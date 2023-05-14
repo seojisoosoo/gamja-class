@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
+import { clickedCount } from "../../recoil/clickedCount";
+import { useRecoilState } from "recoil";
 
 export default function Card(props) {
-  const { id, name, img, setClickedCnt } = props;
+  const { id, name, img } = props;
   const [isFlipped, setIsFlipped] = useState(false);
+  const [clickedCnt, setClickedCnt] = useRecoilState(clickedCount);
 
   function updateClickedCnt() {
     setClickedCnt((prev) => prev + 1);
