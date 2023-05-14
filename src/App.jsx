@@ -4,6 +4,7 @@ import { theme } from "./style/theme";
 import CardsPage from "./@pages/cardsPage";
 import PostPage from "./@pages/postPage";
 import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from "recoil";
+import Router from "./Router";
 
 export default function App() {
   return (
@@ -11,8 +12,7 @@ export default function App() {
       <RecoilRoot>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
-          <CardsPage />
-          <PostPage />
+          <Router />
         </ThemeProvider>
       </RecoilRoot>
     </>

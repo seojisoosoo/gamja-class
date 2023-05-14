@@ -2,10 +2,12 @@ import React, { useRef, useState } from "react";
 import MainHeader from "../@components/common/mainHeader";
 import Footer from "../@components/common/footer";
 import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 export default function PostPage() {
   const nameRef = useRef(null);
   const [name, setName] = useState("");
+  const navigate = useNavigate();
 
   function writeName(e) {
     setName(e.target.value);
@@ -16,8 +18,15 @@ export default function PostPage() {
     console.log(nameRef.current.value);
   }
 
+  function moveToBack() {
+    navigate(-1);
+  }
+
   return (
     <>
+      <button type="button" onClick={moveToBack}>
+        🌷뒤로가기
+      </button>
       <InputWrapper>
         <Input type="text" placeholder="이름을 입력하세요" onChange={writeName} ref={nameRef} />
         <Button type="button" onClick={submitName}>
