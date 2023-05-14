@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { styled } from "styled-components";
 
-export default function MainHeader() {
+export default function MainHeader(props) {
+  const { clickedCnt, message } = props;
+
   return (
-    <Header>
-      <h1>잔망루피 카드</h1>
+    <Header color={message?.color}>
+      <h1>
+        {message?.title}
+        {clickedCnt}개 눌림
+      </h1>
     </Header>
   );
 }
@@ -19,5 +24,5 @@ const Header = styled.header`
   top: 0;
 
   ${({ theme }) => theme.fonts.title};
-  background-color: ${({ theme }) => theme.colors.blue};
+  background-color: ${({ color }) => color};
 `;
