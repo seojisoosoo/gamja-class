@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import MainHeader from "../@components/common/mainHeader";
 import Footer from "../@components/common/footer";
 import { styled } from "styled-components";
 
 export default function PostPage() {
+  const nameRef = useRef(null);
+  const [name, setName] = useState("");
+
+  function writeName(e) {
+    setName(e.target.value);
+    console.log(e.target.value);
+  }
+
+  function submitName() {
+    console.log(nameRef.current.value);
+  }
+
   return (
     <>
-      <MainHeader />
       <InputWrapper>
-        <Input type="text" placeholder="이름을 입력하세요" />
-        <Button type="button">확인</Button>
+        <Input type="text" placeholder="이름을 입력하세요" onChange={writeName} ref={nameRef} />
+        <Button type="button" onClick={submitName}>
+          확인
+        </Button>
       </InputWrapper>
-      <Footer />
     </>
   );
 }
