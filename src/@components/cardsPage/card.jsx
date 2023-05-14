@@ -1,10 +1,12 @@
 import React from "react";
 import { styled } from "styled-components";
 
-export default function Card() {
+export default function Card(props) {
+  const { id, name, img } = props;
   return (
     <CardWrapper>
-      <h1>잔망루피</h1>
+      <h1>{name}</h1>
+      <Img src={img} alt={name} />
     </CardWrapper>
   );
 }
@@ -15,11 +17,16 @@ const CardWrapper = styled.article`
   justify-content: center;
   align-items: center;
 
-  width: 8rem;
-  height: 8rem;
+  width: 20rem;
+  height: 20rem;
 
   padding: 1rem;
   margin: 1rem;
 
+  ${({ theme }) => theme.fonts.text};
   background-color: ${({ theme }) => theme.colors.blue};
+`;
+
+const Img = styled.img`
+  width: 15rem;
 `;

@@ -78,9 +78,9 @@ export const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
   input, button {
-    outline: none;
+    /* outline: none;
     border: none;
-    background-color: transparent;
+    background-color: transparent; */
   }
   button {
     cursor: pointer;

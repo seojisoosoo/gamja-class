@@ -14,7 +14,7 @@ export default function Nav() {
 }
 
 const NavBar = styled.nav`
-  width: 10rem;
+  width: 25%;
   height: 15rem;
 
   padding: 1rem;
