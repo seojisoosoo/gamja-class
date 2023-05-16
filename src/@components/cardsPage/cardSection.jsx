@@ -18,7 +18,7 @@ const CardSectionWrapper = styled.section`
   flex-wrap: wrap;
 
   width: 50%;
-  height: 100vh;
+  height: 150vh;
 
   background-color: ${({ theme }) => theme.colors.skyblue};
 `;

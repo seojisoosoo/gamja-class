@@ -22,7 +22,7 @@ export default function Card(props) {
   return (
     <>
       {isFlipped ? (
-        <>hi</>
+        <CardWrapper>hi</CardWrapper>
       ) : (
         <CardWrapper>
           <h1 onClick={moveToDetail}>{name}</h1>

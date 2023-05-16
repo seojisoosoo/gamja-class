@@ -24,5 +24,6 @@ const Header = styled.header`
   top: 0;
 
   ${({ theme }) => theme.fonts.title};
-  background-color: ${({ color }) => color};
+  color: ${({ color }) => color};
+  background-color: ${({ theme }) => theme.colors.blue};
 `;
