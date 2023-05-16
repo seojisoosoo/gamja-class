@@ -1,6 +1,6 @@
-import { atom } from "recoil";
+// import { atom } from "recoil";
 
-export const clickedCount = atom({
-  key: "clickedCount",
-  default: 0,
-});
+// export const clickedCount = atom({
+//   key: "clickedCount",
+//   default: 0,
+// });
