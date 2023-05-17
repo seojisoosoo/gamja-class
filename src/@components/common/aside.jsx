@@ -1,11 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 export default function Aside() {
+  const navigate = useNavigate();
+
+  function moveToUploadPage() {
+    navigate("/upload");
+  }
+
   return (
     <SideBar>
       <List>마이페이지</List>
-      <List>카드 업로드</List>
+      <List onClick={moveToUploadPage}>카드 업로드</List>
       <List>로그아웃</List>
     </SideBar>
   );

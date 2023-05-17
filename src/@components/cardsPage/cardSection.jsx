@@ -3,13 +3,11 @@ import { styled } from "styled-components";
 import Card from "./card";
 import { CARDS_LIST } from "../../core/cardsData";
 
-export default function CardSection(props) {
-  const { clickedCnt, setClickedCnt } = props;
-
+export default function CardSection() {
   return (
     <CardSectionWrapper>
       {CARDS_LIST.map(({ id, name, img }) => (
-        <Card key={id} id={id} name={name} img={img} clickedCnt={clickedCnt} setClickedCnt={setClickedCnt} />
+        <Card key={id} id={id} name={name} img={img} />
       ))}
     </CardSectionWrapper>
   );
