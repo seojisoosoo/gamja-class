@@ -7,6 +7,8 @@ import Footer from "../@components/common/footer";
 import { styled } from "styled-components";
 import { useRecoilState } from "recoil";
 import { clickedCount } from "../recoil/clickedCount";
+import { useQuery } from "react-query";
+import { getData } from "../api/data";
 
 export default function CardsPage() {
   // const [clickedCnt, setClickedCnt] = useState(0);
