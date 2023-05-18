@@ -10,6 +10,11 @@ const FooterWrapper = styled.footer`
   justify-content: center;
   align-items: center;
 
+  position: fixed;
+  bottom: 0;
+
+  width: 100%;
+
   ${({ theme }) => theme.fonts.title}
 
   background-color:   ${({ theme }) => theme.colors.blue};
