@@ -6,6 +6,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getRPData } from "../../api/getRPData";
 import { postRPData } from "../../api/postRPData";
 import { useNavigate } from "react-router-dom";
+import LoadingPage from "../../@pages/loadingPage";
 
 export default function CardSection() {
   const [newData, setNewData] = useState({ name: "", img: "" });
@@ -25,10 +26,6 @@ export default function CardSection() {
       console.log(error);
     },
   });
-
-  if (isLoading) return;
-
-  if (isError) return;
 
   function getName(e) {
     setNewData((prev) => ({ ...prev, name: e.target.value }));
@@ -55,6 +52,14 @@ export default function CardSection() {
       console.log(error);
     },
   });
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
+
+  if (isError) {
+    return <LoadingPage />;
+  }
 
   return (
     <CardSectionWrapper>

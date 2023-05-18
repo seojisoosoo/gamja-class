@@ -27,23 +27,15 @@ export default function UploadPage() {
     }
   }
 
-  // const queryClient = useQueryClient();
-
   const { mutate: newLoopy } = useMutation(postRPData, {
     onSuccess: (res) => {
       console.log("성공");
       navigate("/");
-      // queryClient.invalidateQueries({ queryKey: ["profileData"] });
     },
     onError: (error) => {
       console.log(error);
     },
   });
-
-  // useEffect(() => {
-  //   console.log("Asdf");
-
-  // }, [newData]);
 
   return (
     <UploadPageWrapper>
