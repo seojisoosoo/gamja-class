@@ -6,7 +6,6 @@ export const CARDS_LIST = [
   },
   {
     id: 2,
-
     name: "부끄럼루피",
     img: "https://item.kakaocdn.net/do/dbcd799aac800f6a680f1d2b04cee5689f17e489affba0627eb1eb39695f93dd",
   },

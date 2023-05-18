@@ -5,9 +5,15 @@ import CardSection from "../@components/cardsPage/cardSection";
 import Aside from "../@components/common/aside";
 import Footer from "../@components/common/footer";
 import { styled } from "styled-components";
+import { useRecoilState } from "recoil";
+import { clickedCount } from "../recoil/clickedCount";
+import { useQuery } from "react-query";
+import { getDD } from "../api/getRPData";
 
 export default function CardsPage() {
-  const [clickedCnt, setClickedCnt] = useState(0);
+  // const [clickedCnt, setClickedCnt] = useState(0);
+  const [clickedCnt, setClickedCnt] = useRecoilState(clickedCount);
+
   const [message, setMessage] = useState({
     color: "blue",
     title: "잔망루피 카드",
@@ -19,10 +25,10 @@ export default function CardsPage() {
 
   return (
     <>
-      <MainHeader clickedCnt={clickedCnt} message={message} />
+      <MainHeader message={message} />
       <MainWrapper>
         <Nav />
-        <CardSection clickedCnt={clickedCnt} setClickedCnt={setClickedCnt} />
+        <CardSection />
         <Aside />
       </MainWrapper>
       <Footer />
