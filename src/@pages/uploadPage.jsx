@@ -1,11 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useMutation, useQueryClient } from "react-query";
 import { styled } from "styled-components";
+import { postRPData } from "../api/postRPData";
+import { useNavigate } from "react-router-dom";
 
 export default function UploadPage() {
   const [newData, setNewData] = useState({ name: "", img: "" });
 
   const nameRef = useRef(null);
   const imgRef = useRef(null);
+
+  const navigate = useNavigate();
 
   function getName(e) {
     setNewData((prev) => ({ ...prev, name: e.target.value }));
@@ -16,8 +21,29 @@ export default function UploadPage() {
   }
 
   function submit() {
-    setNewData({ name: nameRef.current.value, img: imgRef.current.value });
+    // setNewData({ name: nameRef.current.value, img: imgRef.current.value });
+    if (newData.name && newData.img) {
+      newLoopy(newData);
+    }
   }
+
+  // const queryClient = useQueryClient();
+
+  const { mutate: newLoopy } = useMutation(postRPData, {
+    onSuccess: (res) => {
+      console.log("성공");
+      navigate("/");
+      // queryClient.invalidateQueries({ queryKey: ["profileData"] });
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  // useEffect(() => {
+  //   console.log("Asdf");
+
+  // }, [newData]);
 
   return (
     <UploadPageWrapper>
