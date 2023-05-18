@@ -8,12 +8,15 @@ export default function Aside() {
   function moveToUploadPage() {
     navigate("/upload");
   }
+  function logout() {
+    window.sessionStorage.removeItem("accessToken");
+  }
 
   return (
     <SideBar>
       <List>마이페이지</List>
       <List onClick={moveToUploadPage}>카드 업로드</List>
-      <List>로그아웃</List>
+      <List onClick={logout}>로그아웃</List>
     </SideBar>
   );
 }
