@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { userLogin } from "../api/login";
+import { useMutation } from "react-query";
+import { styled } from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 export default function LoginPage() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
+
+  const [cookies, setCookie, removeCookie] = useCookies(["accessToken"]);
 
   function getEmail(e) {
     setLoginData((prev) => ({ ...prev, email: e.target.value }));
@@ -13,7 +20,7 @@ export default function LoginPage() {
   }
 
   function submitLogin() {
-    if (loginData.name && loginData.img) {
+    if (loginData.email && loginData.password) {
       login(loginData);
     }
   }
@@ -21,10 +28,13 @@ export default function LoginPage() {
   const { mutate: login } = useMutation(userLogin, {
     onSuccess: (response) => {
       console.log(response);
-      navigate("/");
+      window.sessionStorage.setItem("accessToken", response.data);
+      navigate("/card");
     },
     onError: (error) => {
-      console.log(error);
+      if (error.message === "Request failed with status code 500") {
+        alert("잘못된 유저입니다.");
+      }
     },
   });
 
@@ -41,3 +51,19 @@ export default function LoginPage() {
     </LoginPageWrapper>
   );
 }
+
+const LoginPageWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  width: 20rem;
+
+  ${({ theme }) => theme.fonts.title}
+`;
+
+const Button = styled.button`
+  width: 10rem;
+  height: 5rem;
+
+  background-color: ${({ theme }) => theme.colors.blue};
+`;
