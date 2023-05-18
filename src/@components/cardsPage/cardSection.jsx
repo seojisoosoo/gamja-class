@@ -7,6 +7,7 @@ import { getRPData } from "../../api/getRPData";
 import { postRPData } from "../../api/postRPData";
 import { useNavigate } from "react-router-dom";
 import LoadingPage from "../../@pages/loadingPage";
+import ErrorPage from "../../@pages/errorPage";
 
 export default function CardSection() {
   const [newData, setNewData] = useState({ name: "", img: "" });
@@ -58,7 +59,7 @@ export default function CardSection() {
   }
 
   if (isError) {
-    return <LoadingPage />;
+    return <ErrorPage />;
   }
 
   return (

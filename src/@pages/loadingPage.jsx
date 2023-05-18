@@ -7,8 +7,10 @@ export default function LoadingPage() {
 }
 
 const LoadingPageWrapper = styled.div`
+  position: absolute;
+
   width: 100%;
-  height: 100%;
+  height: 100vh;
   ${({ theme }) => theme.fonts.title}
 
   background-color:   ${({ theme }) => theme.colors.blue}
