@@ -1,4 +1,5 @@
 import React from "react";
+import { userLogin } from "../api/login";
 
 export default function LoginPage() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -11,7 +12,21 @@ export default function LoginPage() {
     setLoginData((prev) => ({ ...prev, password: e.target.value }));
   }
 
-  function submitLogin() {}
+  function submitLogin() {
+    if (loginData.name && loginData.img) {
+      login(loginData);
+    }
+  }
+
+  const { mutate: login } = useMutation(userLogin, {
+    onSuccess: (response) => {
+      console.log(response);
+      navigate("/");
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
   return (
     <LoginPageWrapper>
