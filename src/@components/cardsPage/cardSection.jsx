@@ -11,7 +11,24 @@ export default function CardSection() {
   const [newData, setNewData] = useState({ name: "", img: "" });
   const navigate = useNavigate();
 
-  const { data: roopys } = useQuery(["loopyData"], getRPData);
+  const [serverData, setServerData] = useState([]);
+
+  const {
+    data: roopys,
+    isLoading,
+    isError,
+  } = useQuery(["loopyData"], getRPData, {
+    onSuccess: (response) => {
+      setServerData(response);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  if (isLoading) return;
+
+  if (isError) return;
 
   function getName(e) {
     setNewData((prev) => ({ ...prev, name: e.target.value }));
