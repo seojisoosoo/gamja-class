@@ -15,7 +15,9 @@ export default function UploadPage() {
     setNewData((prev) => ({ ...prev, img: e.target.value }));
   }
 
-  console.log(newData);
+  function submit() {
+    setNewData({ name: nameRef.current.value, img: imgRef.current.value });
+  }
 
   return (
     <UploadPageWrapper>
@@ -23,7 +25,9 @@ export default function UploadPage() {
       <input type="text" ref={nameRef} onChange={getName} />
       <p>이미지</p>
       <input type="text" ref={imgRef} onChange={getImg} />
-      <Button type="button">확인</Button>
+      <Button type="button" onClick={submit}>
+        확인
+      </Button>
     </UploadPageWrapper>
   );
 }
