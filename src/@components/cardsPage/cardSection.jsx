@@ -1,18 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import Card from "./card";
 import { CARDS_LIST } from "../../core/cardsData";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getRPData } from "../../api/getRPData";
+import { postRPData } from "../../api/postRPData";
+import { useNavigate } from "react-router-dom";
 
 export default function CardSection() {
-  const { data: roopys } = useQuery("rpdata", getRPData);
+  const [newData, setNewData] = useState({ name: "", img: "" });
+  const navigate = useNavigate();
+
+  const { data: roopys } = useQuery(["loopyData", newData], getRPData);
+
+  function getName(e) {
+    setNewData((prev) => ({ ...prev, name: e.target.value }));
+  }
+
+  function getImg(e) {
+    setNewData((prev) => ({ ...prev, img: e.target.value }));
+  }
+
+  function submit() {
+    if (newData.name && newData.img) {
+      newLoopy(newData);
+    }
+  }
+
+  const queryClient = useQueryClient();
+
+  const { mutate: newLoopy } = useMutation(postRPData, {
+    onSuccess: (res) => {
+      console.log("성공");
+      queryClient.invalidateQueries("loopyData");
+      navigate("/");
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
   return (
     <CardSectionWrapper>
       {roopys?.map(({ id, name, img }) => (
         <Card key={id} id={id} name={name} img={img} />
       ))}
+
+      <UploadPageWrapper>
+        <p>이름</p>
+        <input type="text" onChange={getName} />
+        <p>이미지</p>
+        <input type="text" onChange={getImg} />
+        <Button type="button" onClick={submit}>
+          확인
+        </Button>
+      </UploadPageWrapper>
     </CardSectionWrapper>
   );
 }
@@ -22,7 +64,24 @@ const CardSectionWrapper = styled.section`
   flex-wrap: wrap;
 
   width: 50%;
-  height: 115vh;
+  height: 100%;
+  margin-bottom: 5rem;
 
   background-color: ${({ theme }) => theme.colors.skyblue};
+`;
+
+const UploadPageWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  width: 20rem;
+
+  ${({ theme }) => theme.fonts.title}
+`;
+
+const Button = styled.button`
+  width: 10rem;
+  height: 5rem;
+
+  background-color: ${({ theme }) => theme.colors.blue};
 `;
