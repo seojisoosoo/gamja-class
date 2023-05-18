@@ -9,7 +9,7 @@ export default function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<CardsPage />} />
-        <Route path="/upload-card-data" element={<UploadPage />} />
+        <Route path="/upload" element={<UploadPage />} />
         <Route path="/detail/:cardId" element={<DetailPage />} />
       </Routes>
     </BrowserRouter>
