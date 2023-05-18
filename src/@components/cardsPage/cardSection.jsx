@@ -11,7 +11,7 @@ export default function CardSection() {
   const [newData, setNewData] = useState({ name: "", img: "" });
   const navigate = useNavigate();
 
-  const { data: roopys } = useQuery(["loopyData", newData], getRPData);
+  const { data: roopys } = useQuery(["loopyData"], getRPData);
 
   function getName(e) {
     setNewData((prev) => ({ ...prev, name: e.target.value }));
@@ -33,7 +33,6 @@ export default function CardSection() {
     onSuccess: (res) => {
       console.log("성공");
       queryClient.invalidateQueries("loopyData");
-      navigate("/");
     },
     onError: (error) => {
       console.log(error);
